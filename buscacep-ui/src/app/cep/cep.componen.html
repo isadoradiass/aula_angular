@@ -1,0 +1,63 @@
+<form #form="ngForm">
+    <div class="col-12">
+      <p-button icon="pi pi-arrow-left" styleClass="p-button-rounded p-button-text p-button-raised" routerLink="/"></p-button>
+    </div>
+    
+    <!-- Campo de Entrada para CEP -->
+    <div class="col-8 md:col-6 lg:col-3">
+      <p-inputMask 
+        type="tel" 
+        mask="99999-999" 
+        [(ngModel)]="buscacep" 
+        (onBlur)="buscarCEP(buscacep, form)" 
+        name="cep" 
+        placeholder="99-999999" 
+        [unmask]="true" 
+        [required]="true" 
+        #cep="ngModel">
+      </p-inputMask>
+    </div>
+    
+    <!-- Botão de Pesquisa -->
+    <div class="col-4 md:col-6 lg:col-3">
+      <button pButton 
+        type="button" 
+        label="Pesquisar" 
+        class="p-button-raised" 
+        (click)="buscarCEP(buscacep, form)" 
+        [disabled]="!cep.valid">
+      </button>
+    </div>
+  
+    <!-- Exibição dos Dados do CEP -->
+    <div class="flex flex-wrap mt-5" *ngIf="buscar">
+      <div class="col-12 md:col-6 lg:col-3">
+        <span class="p-float-label">
+          <input class="w-full" pInputText ngModel id="logradouro" name="logradouro" disabled="true">
+          <label for="logradouro">Logradouro</label>
+        </span>
+      </div>
+      
+      <div class="col-12 md:col-6 lg:col-3 mt-2">
+        <span class="p-float-label">
+          <input class="w-full" pInputText id="bairro" name="bairro" ngModel disabled="true">
+          <label for="bairro">Bairro</label>
+        </span>
+      </div>
+      
+      <div class="col-12 md:col-6 lg:col-3 mt-2">
+        <span class="p-float-label">
+          <input class="w-full" pInputText id="cidade" name="cidade" ngModel disabled="true">
+          <label for="cidade">Cidade</label>
+        </span>
+      </div>
+      
+      <div class="col-12 md:col-6 lg:col-3 mt-2">
+        <span class="p-float-label">
+          <input class="w-full" pInputText id="estado" name="estado" ngModel disabled="true">
+          <label for="estado">Estado</label>
+        </span>
+      </div>
+    </div>
+  </form>
+  
